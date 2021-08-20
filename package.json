@@ -1,0 +1,27 @@
+{
+  "name": "Employee_Tracker_by_RG",
+  "version": "1.0.0",
+  "description": "Employee Tracker",
+  "main": "index.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^10.0.0",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rach-Gee/Employee_Tracker_by_RG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rach-Gee/Employee_Tracker_by_RG/issues"
+  },
+  "homepage": "https://github.com/Rach-Gee/Employee_Tracker_by_RG#readme"
+}
