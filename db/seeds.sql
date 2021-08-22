@@ -10,5 +10,10 @@ VALUES (001, "Managing Director", 150000, 001),
 
 INSERT INTO employee (id, first_name, last_name, manager_id, roles_id)
 VALUES (001, "Kate", "Doe", NULL, 001),
-       (002, "John", "Smith", 002, 002),
-       (003, "Fletcher", "Winter", 002, 003);
+       (002, "John", "Smith", 001, 002),
+       (003, "Fletcher", "Winter", 001, 003);
+
+
+
+
+
