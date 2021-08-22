@@ -26,6 +26,8 @@ To utalise this app first clone this repo, run npm install in order to install t
        
 When you run node index.js, the application uses the inquirer package to provide options the end user can select e.g. View Employees. Console.Table has been used to display the response in a readable format. The end user will also beable to add, update and delete from the options provided. 
 
+https://user-images.githubusercontent.com/83891242/130351441-c7ea5f12-fc31-4b48-a081-1cf8795a894f.mp4
+
 ## License
 
 MIT_License
