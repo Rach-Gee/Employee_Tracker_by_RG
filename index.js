@@ -2,6 +2,7 @@ const sequelize = require('./config/connection');
 const inquirer = require("inquirer");
 const mysql = require("mysql2")
 
+//create Connection to data base 
 const db = mysql.createConnection(
 	{
 		host: 'localhost',
@@ -18,6 +19,7 @@ db.connect(err => {
 	afterConnection();
 });
 
+//start app
 afterConnection = () => {
 	console.log(`
 	********************
@@ -38,24 +40,26 @@ function startQuestions() {
 		.then(({ task }) => operations[task]())
 }
 
+//options for end user to select and what function they trigger
 const operations = {
 	"View Employees": viewEmployees,
 	"View Employees By Manager": viewEmployeesByManager,
-	"view Employees By Department": viewEmployeesByDept,
+	"View Employees By Department": viewEmployeesByDept,
 	"View Roles": viewRoles,
 	"View Departments": viewDepartments,
+	"View utilized budget of a department": departmentBudget,
 	"Add Employee": addEmployees,
-	"Update Employee Role": updateEmployees,
 	"Add Department": addDepartments,
 	"Add Roles": addRoles,
+	"Update Employee Role": updateEmployees,
 	"Update Employee's Manager": updateEmployeeManager,
 	"Delete Department": deleteDept,
 	"Delete Employee": deleteEmployee,
 	"Delete Role": deleteRoles,
-	"View utilized budget of a department": departmentBudget,
 	"Exit App": process.exit
 }
 
+//funtion to view all employees 
 function viewEmployees() {
 	let query = `SELECT e.id, e.first_name AS "First Name", e.last_name AS "Last Name", r.title AS "Role Title", r.salary AS Salary, d.name AS "Department Name", IFNULL(CONCAT (em.first_name,' ',em.last_name),"No Manager") AS Manager
 	FROM employee e
@@ -69,6 +73,7 @@ function viewEmployees() {
 	});
 }
 
+//funtion to add an employee 
 function addEmployees() {
 	let query = `SELECT * FROM roles`
 	db.query(query, function (err, res) {
@@ -125,7 +130,7 @@ function employeePromptAdd(employeeOptions, roleOptions) {
 		})
 }
 
-
+//funtion to update an employee 
 function updateEmployees() {
 	let query = `SELECT * FROM roles`
 	db.query(query, function (err, res) {
@@ -173,6 +178,7 @@ function updatePromptEmployees(roleOptions, employeeOptions) {
 		})
 }
 
+//funtion to view Departments
 function viewDepartments() {
 	let query = `SELECT * FROM department`
 	db.query(query, function (err, results) {
@@ -253,6 +259,7 @@ function rolesPromptAdd(departmentOptions) {
 		})
 }
 
+//funtion to update employee manager
 function updateEmployeeManager() {
 	let query = `SELECT * FROM employee`
 	db.query(query, function (err, res) {
@@ -300,6 +307,7 @@ function updatePromptEmployees(managerOptions, employeeOptions) {
 		})
 }
 
+//funtion to view employee by manager
 function viewEmployeesByManager() {
 	let query = `SELECT * FROM employee`
 	db.query(query, function (err, res) {
@@ -336,6 +344,7 @@ function viewEmployeesByManagerPrompt(managerOptions) {
 		})
 }
 
+//funtion to view employee dept
 function viewEmployeesByDept() {
 	let query = `SELECT * FROM department`
 	db.query(query, function (err, res) {
@@ -373,8 +382,7 @@ function viewEmployeesByDeptPrompt(departmentOptions) {
 		})
 }
 
-
-
+//funtion to delete dept
 function deleteDept() {
 	let query = `SELECT * FROM department`
 	db.query(query, function (err, res) {
@@ -407,6 +415,7 @@ function deleteDeptPrompt(departmentOptions) {
 		})
 }
 
+//funtion to delete emmployee
 function deleteEmployee() {
 	let query = `SELECT * FROM employee`
 	db.query(query, function (err, res) {
@@ -439,6 +448,7 @@ function deleteEmployeePrompt(employeeOptions) {
 		})
 }
 
+//funtion to delete roles
 function deleteRoles() {
 	let query = `SELECT * FROM roles`
 	db.query(query, function (err, res) {
@@ -471,6 +481,7 @@ function deleterolePrompt(roleOptions) {
 		})
 }
 
+//funtion to view dept's budget 
 function departmentBudget() {
 	let query = `Select d.name, SUM(r.salary) AS "utilized budget"
 	FROM employee e
